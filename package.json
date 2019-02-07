@@ -15,8 +15,7 @@
     "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls"
   },
   "files": [
-    "dist",
-    "lib"
+    "bin"
   ],
   "preferGlobal": true,
   "bin": {
