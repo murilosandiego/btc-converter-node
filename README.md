@@ -1,5 +1,7 @@
 # Bitcoin Converter CLI Node
 
+[![Build Status](https://travis-ci.org/murilosandiego/btc-converter-node.svg?branch=master)](https://travis-ci.org/murilosandiego/btc-converter-node)
+
 > A CLI to convert Bitcoin to any currency provided.
 
 
