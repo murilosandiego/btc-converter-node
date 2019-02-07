@@ -1,0 +1,93 @@
+{
+  "name": "btc-converter-node",
+  "version": "1.0.0",
+  "description": "A CLI to converter Bitcoin to any currency provided",
+  "main": "index.js",
+  "scripts": {
+    "clear": "rimraf bin",
+    "build": "npm run clear && babel --out-dir bin src",
+    "build:watch": "npm run build -- --watch",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "test": "mocha tests/**/*.spec.js --require @babel/register --require @babel/polyfill",
+    "test:tdd": "mocha tests/**/*.spec.js --require @babel/register --watch",
+    "test:coverage": "nyc npm test -- --exit",
+    "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls"
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "preferGlobal": true,
+  "bin": {
+    "btc-converter": "bin/main.js"
+  },
+  "nyc": {
+    "functions": 80,
+    "lines": 80,
+    "check-coverage": true,
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/**",
+      "./node_modules/"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/murilosandiego/btc-converter.git"
+  },
+  "keywords": [
+    "js",
+    "tdd"
+  ],
+  "author": "Murilo Sandiego <contato@murilosandiego.com.br> (http://murilosandiego.com.br/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/murilosandiego/btc-converter/issues"
+  },
+  "homepage": "https://github.com/murilosandiego/btc-converter#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
+    "husky": "^1.3.1",
+    "mocha": "^5.2.0",
+    "nock": "^10.0.6",
+    "nyc": "^13.1.0",
+    "rimraf": "^2.6.3",
+    "sinon": "^7.2.3",
+    "sinon-chai": "^3.3.0",
+    "standard": "^12.0.1"
+  },
+  "standard": {
+    "ignore": [
+      "bin/"
+    ],
+    "globals": [
+      "describe",
+      "it",
+      "beforeEach",
+      "afterEach"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint && npm run test:coverage"
+    }
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.19.0",
+    "ora": "^3.0.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
+  }
+}
